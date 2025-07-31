@@ -1,0 +1,574 @@
+:root {
+    --backGround: white;
+    --textColor: #000000;
+    --textColor2: #C3C1E5;
+    --buttonBackground: #6C63FF;
+    --buttonTextColor: white;
+    --buttonTextColor2: #6C63FF;
+    --inputBorder: #6c63ff;
+    --inputShadow: #C3C1E5;
+    --modalBorder: white;
+    --searchIcon: url("assets/glass_white.svg");
+    --themeIcon: url("assets/dark.svg");
+    --emptyIcon: url('assets/emptyLight.svg');
+    --filterShadow: #C3C1E5;
+    --filterShadowFocused: #534CC2;
+    --modalHeader: black;
+    --modalInputBorder: #6c63ff;
+    --modalInputBackground: white;
+    --modalInputPlaceholder: #C3C1E5;
+    --modalInputText: black;
+    --filterOptionBackground: white;
+    --filterOptionColor: #6c63ff;
+    --buttonHover: #5850DD;
+    --checkBoxBack: white;
+    --deleteB: url('assets/deleteB.svg');
+    --editB: url('assets/editB.svg');
+    --completedNote: rgba(37, 37, 37, .5);
+    --seachInputText: black;
+
+}
+
+[data-theme="dark"]{
+
+    --backGround: black;
+    --textColor: #ffffff;
+    --textColor2: #666666;
+    --buttonBackground: #6C63FF;
+    --buttonTextColor: white;
+    --buttonTextColor2: #6C63FF;
+    --inputBorder: white;
+    --inputShadow: #666666;
+    --modalBorder: white;
+    --searchIcon: url("assets/glass_dark.svg");
+    --themeIcon: url("assets/theme_light.svg");
+    --emptyIcon: url('assets/emptyDark.svg');
+    --filterShadow: #6C63FF;
+    --filterShadowFocused: #534CC2;
+    --modalHeader: white;
+    --modalInputBorder: white;
+    --modalInputBackground: black;
+    --modalInputPlaceholder: #666666;
+    --modalInputText: white;
+    --filterOptionBackground: white;
+    --filterOptionColor: #6c63ff;
+    --buttonHover: #5850DD;
+    --checkBoxBack: black;
+    --deleteB: url('assets/deleteBDark.svg');
+    --editB: url('assets/editBDark.svg');
+    --completedNote: #252525;
+    --seachInputText: white;
+
+}
+
+
+body{
+    margin: 0;
+}
+
+
+.container {
+    min-height: 100vh;
+    overflow: auto;
+    width: 100vw;
+    background-color: var(--backGround);
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center; 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.content {
+    position: relative;
+    margin-left: 325px;
+    margin-right: 325px;
+    width: 750px;
+    height: 710px;
+    box-sizing:border-box ;
+}
+
+
+.title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: bold;
+    margin-top: 40px;
+    margin-bottom: 18px;
+    color: var(--textColor);
+}
+
+.search {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.search-input {
+    width: 596px;
+    height: 38px;
+    border-radius: 6px;
+    background-color: var(--backGround);
+    border: 1px solid var(--inputBorder);
+    background-image: var(--searchIcon);
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 20px 20px;
+    color: var(--seachInputText);
+    padding-left: 16px;
+}
+
+.search-input::placeholder {
+    color: var(--textColor2);
+    width: 106px;
+    height: 16px;
+    position: absolute;
+}
+
+.search-input:focus {
+    outline: var(--inputBorder);
+    box-shadow: 0 0 0px 2px var(--inputShadow);
+}
+
+.theme {
+    border: none;
+    color: var(--buttonTextColor);
+    background-color: var(--buttonBackground);
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+    background-image: var(--themeIcon);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+.theme:hover {
+    background-color: var(--buttonHover);
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 150px;
+    margin-left: 150px;
+    opacity: 1;
+}
+
+.empty-state.hide {
+    display: none;
+}
+
+.empty-pic {
+    width: 222px;
+    height: 174px;
+    background-image: var(--emptyIcon);
+    border: none 0px;
+}
+
+.empty-text {
+    width: 70px;
+    height: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    color: var(--textColor);
+}
+
+
+.note-button {
+    border: none;
+    background-color: var(--buttonBackground);
+    background-image: url(assets/plus.svg);
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: fixed;
+    right: 550px;   
+    bottom: 20px;
+    cursor: pointer;
+}
+
+.note-button:hover {
+    background-color: var(--buttonHover);
+}
+
+.modal-container {
+    position: fixed;
+    background-color: rgba(0, 0, 0, .7);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    display: flex;
+    padding-top: 118px;
+    justify-content: center;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    background-color: var(--backGround);
+    width: 500px;
+    height: 290px;
+    max-width: 100%;
+    border-radius: 20px;
+    text-align: center;
+    padding: 18px 30px 18px 30px;
+    box-sizing: border-box;
+    border: 1px solid var(--modalBorder);
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--modalHeader);
+}
+
+.modal input {
+    border: 1px solid var(--modalInputBorder);
+    border-radius: 6px;
+    width: 440px;
+    height: 38px;
+    padding-left: 16px;
+    margin-bottom: 128px;
+    box-sizing: border-box;
+    background-color: var(--modalInputBackground);
+    color: var(--modalInputText);
+}
+
+
+.modal input:focus {
+    outline: none;
+}
+
+.modal input::placeholder {
+    color: var(--modalInputPlaceholder);
+    font-size: 16px;
+}
+
+.modal-cancel {
+    border: 1px solid var(--buttonBackground);
+    color: var(--buttonTextColor2);
+    background-color: var(--backGround);
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 22px;
+    width: 110px;
+    height: 38px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.modal-apply {
+    border: none;
+    background-color: var(--buttonBackground);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 22px;
+    width: 110px;
+    height: 38px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.modal-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
+
+.all-notes {
+    width: 520px;
+    height: 545px;
+    box-sizing: border-box;
+    margin-left: 115px;
+}
+
+.all-notes.show {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.note {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid #6c63ff;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+}
+
+.user-note {
+    flex: 1;
+    /* ← makes it expand fully */
+    min-width: 0;
+    /* ← prevents overflow issues */
+    margin-right: 10px;
+    /* ← small gap before buttons */
+    font-size: 20px;
+    font-weight: bold;
+    font-family: sans-serif;
+    color: var(--textColor);
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.note .user-note.completed {
+    text-decoration: line-through;
+    color: var(--completedNote);
+}
+
+.notesB {
+    width: 62px;
+    height: 18px;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: flex;
+
+}
+
+.editB {
+    background-image: var(--editB);
+    background-size: 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    background-color: transparent;
+}
+
+.editB:hover {
+    background-image: url(assets/editBHover.svg);
+}
+
+.deleteB {
+    background-image: var(--deleteB);
+    background-size: 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    background-color: transparent;
+}
+
+.deleteB:hover {
+    background-image: url(assets/deleteBHover.svg);
+}
+
+.custom-checkbox input {
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox {
+    position: relative;
+    padding-left: 16px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+}
+
+
+.custom-checkbox .checkmark {
+    position: absolute;
+    left: 0;
+    top: 1;
+    height: 26px;
+    width: 26px;
+    background-color: var(--checkBoxBack);
+    border: 1px solid #6c63ff;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.custom-checkbox input:checked+.checkmark {
+    background-color: #6c63ff;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="14" width="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.285 6.709a1 1 0 0 0-1.41-1.418l-9.174 9.207-4.586-4.59a1 1 0 0 0-1.415 1.415l5.293 5.293a1 1 0 0 0 1.414 0l9.878-9.907z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px 18px;
+}
+
+.filter-container {
+    position: relative;
+    width: 120px;
+    height: 38px;
+    user-select: none;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    background-color: #6c63ff;
+    border-radius: 4px;
+    background-position: right 10px top 18px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.filter-selected {
+    background-color: #6c63ff;
+    color: var(--buttonTextColor);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100px;
+    height: 10px;
+    border: none;
+}
+
+.filter-selected::after {
+    content: url(assets/arrow.svg);
+    right: 10px;
+    top: 8px;
+    position: absolute;
+}
+
+.filter-container:hover {
+    outline: #534cc2 solid 1px;
+}
+
+.filter-options {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    outline: #6c63ff 1px solid;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 10;
+    padding-bottom: 8px;
+}
+
+.filter-option {
+    padding-left: 6px;
+    padding-top: 8px;
+    color: #6c63ff;
+    font-weight: bold;
+    background-color: var(--filterOptionBackground);
+    cursor: pointer;
+    text-align: left;
+}
+
+.filter-option:hover {
+    background-color: #e3e0ff;
+}
+
+.hide {
+    display: none;
+}
+
+.edit-modal-container {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.3s ease;
+    display: flex;
+    padding-top: 118px;
+    justify-content: center;
+}
+
+.edit-modal {
+    background-color: var(--backGround);
+    width: 500px;
+    height: 290px;
+    max-width: 100%;
+    border-radius: 20px;
+    text-align: center;
+    padding: 18px 30px 18px 30px;
+    box-sizing: border-box;
+    border: 1px solid var(--modalBorder);
+}
+
+.edit-modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--modalHeader);
+}
+
+.edit-modal input {
+    border: 1px solid var(--modalInputBorder);
+    border-radius: 6px;
+    width: 440px;
+    height: 38px;
+    padding-left: 16px;
+    margin-bottom: 128px;
+    box-sizing: border-box;
+    background-color: var(--modalInputBackground);
+    color: var(--modalInputText);
+}
+
+.edit-modal input:focus {
+    outline: none;
+}
+
+.edit-modal input::placeholder {
+    color: var(--modalInputPlaceholder);
+    font-size: 16px;
+}
+
+.edit-modal-cancel {
+    border: 1px solid var(--buttonBackground);
+    color: var(--buttonTextColor2);
+    background-color: var(--backGround);
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 22px;
+    width: 110px;
+    height: 38px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.edit-modal-apply {
+    border: none;
+    background-color: var(--buttonBackground);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 22px;
+    width: 110px;
+    height: 38px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.edit-modal-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0px;
+}
